@@ -1,0 +1,36 @@
+.jumbotron{
+    padding: 5px;
+    color: darkolivegreen;
+    margin-bottom: 1px;
+}
+/* icon-style in jumbotron */
+.jumbotron img{
+    width:100px;
+    height:100px;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* nav-bar style */
+.navbar{
+    margin-top: 3px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+    background-color:#e9ecef5e;
+}
+.loginform{
+    display: block;
+    max-width: 300px;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.loginform button{
+    margin-left: 5px;
+}
+ul#footer-icon-list{
+    display:inline-flex;
+    list-style-type: none;
+    margin-left: 10px;
+}
+
