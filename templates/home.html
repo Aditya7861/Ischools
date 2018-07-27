@@ -1,11 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
+    {% load staticfiles %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<title>Title</title>
 </head>
 <body>
-   <h1>welxkjv sfduighsg sdfgh</h1>
-   <p>sjfhsgfh sajghsg 67fgxzfyuegfshjzxbcdusagfsdxhj</p>
+  {% block header %}
+   <div class="jumbotron text-center text-success">
+    <img src="{% static 'school.png' %}" alt="not loaded">
+    <h1 class="display-4">ISchools.com</h1>
+    <p class="lead">Online School Management</p>
+  </div>
+  {% endblock %}
+  {% block navbar %}
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">ISchools.com</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home"></i>  Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">	<i class="fa fa-user-o"></i>  About</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right">
+        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-user"></i>  sign-up</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i>  login</a></li>
+      </ul>
+    </div>
+  </nav>
+  {% endblock navbar %}
+  {% block container %}
+
+  {% endblock container %}
+  <div class="container" id="footer">
+    <hr>
+    <p class="text-info">ISchools is optimised online interactive site for both students and tutors.This provides the latest posts to the students on the topic they selected.</p>
+    <p>Follow us :</p>
+    <ul id="footer-icon-list">
+        <li style="margin-right:10px;"><a href="#"><i class="fa fa-facebook-official"></i><span> Facebook</span></a></li>
+        <li style="margin-right:10px;"><a href="#"><i class="fa fa-linkedin-square"></i><span> Linkedin</span> </a></li>
+        <li style="margin-right:10px;"><a href="#"><i class="fa fa-twitter"></i><span> Twitter</span> </a></li>
+    </ul>
+  </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
 </body>
 </html>
