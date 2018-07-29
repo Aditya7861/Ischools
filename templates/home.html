@@ -34,15 +34,17 @@
         </li>
       </ul>
       <ul class="navbar-nav navbar-right">
-        <li class="nav-item"><a class="nav-link" href="#"><i class="fa fa-user"></i>  sign-up</a></li>
+          {% block logout %}
+        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-user"></i>  sign-up</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i>  login</a></li>
+          {% endblock %}
       </ul>
     </div>
   </nav>
   {% endblock navbar %}
   {% block container %}
-
   {% endblock container %}
+  {% block footer %}
   <div class="container" id="footer">
     <hr>
     <p class="text-info">ISchools is optimised online interactive site for both students and tutors.This provides the latest posts to the students on the topic they selected.</p>
@@ -53,6 +55,7 @@
         <li style="margin-right:10px;"><a href="#"><i class="fa fa-twitter"></i><span> Twitter</span> </a></li>
     </ul>
   </div>
+  {% endblock %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>

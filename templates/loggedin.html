@@ -1,6 +1,9 @@
 {% extends 'home.html' %}
 {% block header %}
 {% endblock %}
+{% block logout %}
+  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-user"></i>  Log-out</a></li>
+{% endblock %}
 {% block container %}
   <center><h3>welcome {{ user }}</h3></center>
 {% endblock %}
