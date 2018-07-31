@@ -1,6 +1,16 @@
 from django import forms
+from login.models import Post
+from django.forms import ModelForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+class Post_form(ModelForm):
+    text = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'4'}))
+
+    class Meta:
+        model = Post
+        fields = {'text'}
 
 
 class Login(forms.Form):
@@ -24,4 +34,4 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
-        help_texts={'password1':'enter'}
+

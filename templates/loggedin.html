@@ -1,9 +1,44 @@
 {% extends 'home.html' %}
 {% block header %}
 {% endblock %}
-{% block logout %}
-  <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-user"></i>  Log-out</a></li>
+{% block navbar %}
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="nav  nav-white" id="log">
+      <li class="nav-item active px-0">
+        <a class="nav-link" href="#"><i class="fa fa-home" style="color:lightslategrey;font-size:30px"></i></a>
+      </li>
+      <li class="nav-item px-0">
+        <a class="nav-link" href="#"><i class="fa fa-envelope-o" style="color:lightslategrey;font-size:30px"></i></a>
+      </li>
+      <li class="nav-item px-0">
+        <a class="nav-link" href="#"><i class="fa fa-user" style="color:lightslategrey;font-size:30px"></i></a>
+      </li>
+      <li class="nav-item px-0">
+        <a class="nav-link" href="#"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
+      </li>
+      <li class="nav-item px-0">
+        <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="color:lightslategrey;font-size:30px"></i></a>
+      </li>
+    </ul>
+  </nav>
 {% endblock %}
 {% block container %}
-  <center><h3>welcome {{ user }}</h3></center>
+    <div class="container">
+    <form method="post" action="/post/">
+        {% csrf_token %}
+       <div class="form-group">
+         <label for="write your post"><h4 class="text-info">Write your post : </h4></label>
+         {{ form.text }}
+       </div>
+     <button type="submit" class="btn btn-primary">Post</button>
+    </form>
+    <hr>
+  {% for post in posts %}
+    <div style="border: 1px solid lightblue;border-radius: 3px;">
+      <h4 style="color:#669999;padding-left:5px;">{{ post.text }}</h4><hr style="padding-bottom: 0px;">
+      <p style="padding-left: 5px;margin-top: 0px;"><i class="fa fa-user"></i> posted by <a class="text-info" href="">  {{ post.username }}</a></p>
+      <p style="padding-left: 5px;margin-top: 0px;"><i class="fa fa-calendar"></i> Posted on {{ post.published_date }}</p>
+    </div>
+  {% endfor %}
+    </div>
 {% endblock %}

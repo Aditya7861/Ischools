@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,HttpResponseRedirect
-from login.forms import Login,SignUpForm
+from login.forms import Login,SignUpForm,Post_form
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
+from login.models import Post
+from django.utils import timezone
 
 
 def home(request):
@@ -34,9 +36,23 @@ def user_logout(request):
 
 
 @login_required()
+def user_post(request):
+    if request.method == 'POST':
+        postform = Post_form(request.POST)
+        if postform.is_valid():
+            obj = postform.save(commit=False)
+            obj.username = request.user
+            obj.published_date = timezone.now()
+            obj.save()
+            return redirect('loggedin')
+    return redirect('loggedin')
+
+
+@login_required()
 def loggedin(request):
-    user = request.user
-    return render(request, 'loggedin.html', {'user':user})
+    form = Post_form
+    post = Post.objects.all()
+    return render(request, 'loggedin.html', {'form':form,'posts':post})
 
 
 def signup(request):
