@@ -1,0 +1,14 @@
+{% extends 'loggedin.html' %}
+{% block container %}
+ <div class="container">
+   <h3 class="text-info">Users : </h3><hr>
+  {% for user in users %}
+     <div style="border: 1px solid lightblue;margin-top:5px;border-radius: 5px;padding: 5px; box-shadow: 0 1px 2px 0 lightblue, 0 2px 10px 0 lightblue;">
+        <div style="display: block;float: left;margin-right: 10%;">
+       <h3 class="text-info"><i class="fa fa-user"></i>  {{ user.username }}</h3>
+        </div>
+         <button class="btn btn-primary" style="padding-left: 10px;"><a href="/request_sent/{{user.username}}"></a>add friend</button>
+     </div>
+  {% endfor %}
+ </div>
+{% endblock %}

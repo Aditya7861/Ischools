@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login ,logout
 from login.models import Post
 from django.utils import timezone
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
@@ -49,10 +51,24 @@ def user_post(request):
 
 
 @login_required()
+def friends(request):
+    users = User.objects.all()
+    return render(request, 'friends.html', {'users':users})
+
+
+@login_required()
 def loggedin(request):
     form = Post_form
-    post = Post.objects.all()
-    return render(request, 'loggedin.html', {'form':form,'posts':post})
+    post = Post.objects.all().order_by('-published_date')
+    page = request.GET.get('page', 1)
+    paginator = Paginator(post,2)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+    return render(request, 'loggedin.html', {'form': form, 'posts': users})
 
 
 def signup(request):

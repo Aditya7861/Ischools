@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 
 class Post_form(ModelForm):
-    text = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'4'}))
+    text = forms.CharField(widget=forms.Textarea(attrs={'class':'form-control', 'rows':'3', 'style':' box-shadow: 0 1px 2px 0 lightblue, 0 2px 10px 0 lightblue;'}))
 
     class Meta:
         model = Post

@@ -5,7 +5,7 @@
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <ul class="nav  nav-white" id="log">
       <li class="nav-item active px-0">
-        <a class="nav-link" href="#"><i class="fa fa-home" style="color:lightslategrey;font-size:30px"></i></a>
+        <a class="nav-link" href="{% url 'loggedin' %}"><i class="fa fa-home" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
         <a class="nav-link" href="#"><i class="fa fa-envelope-o" style="color:lightslategrey;font-size:30px"></i></a>
@@ -14,7 +14,7 @@
         <a class="nav-link" href="#"><i class="fa fa-user" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
-        <a class="nav-link" href="#"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
+        <a class="nav-link" href="{% url 'friends' %}"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
         <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="color:lightslategrey;font-size:30px"></i></a>
@@ -34,11 +34,38 @@
     </form>
     <hr>
   {% for post in posts %}
-    <div style="border: 1px solid lightblue;border-radius: 3px;">
-      <h4 style="color:#669999;padding-left:5px;">{{ post.text }}</h4><hr style="padding-bottom: 0px;">
-      <p style="padding-left: 5px;margin-top: 0px;"><i class="fa fa-user"></i> posted by <a class="text-info" href="">  {{ post.username }}</a></p>
-      <p style="padding-left: 5px;margin-top: 0px;"><i class="fa fa-calendar"></i> Posted on {{ post.published_date }}</p>
+    <div style="border: 1px solid lightblue;border-radius: 3px;margin-bottom: 4px; box-shadow: 0 1px 2px 0 lightblue, 0 2px 10px 0 lightblue;">
+      <h5 style="color:#669999;padding-left:5px;padding-top: 2px">{{ post.text }}</h5><hr style="margin-bottom: 0px;">
+      <p style="padding-left: 5px;margin-bottom: 0px;margin-top: 0px"><i class="fa fa-user"></i> posted by <a class="text-info" href="">  {{ post.username }}</a></p>
+      <p style="padding-left: 5px;margin-top: 0px;margin-bottom: 0px;"><i class="fa fa-calendar"></i> Posted on {{ post.published_date }}</p>
     </div>
   {% endfor %}
+     {% with posts as items %}
+            {% if items.has_other_pages %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-left">
+                        {% if items.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span></a></li>
+                        {% endif %}
+                        {% for i in items.paginator.page_range %}
+                            {% if items.number == i %}
+                                <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if items.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                        {% else %}
+                            <li class="page-item disabled"><a class="page-link" href="#"><span>&raquo;</span></a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        {% endwith %}
     </div>
 {% endblock %}
+
+
