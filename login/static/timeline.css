@@ -1,0 +1,27 @@
+.user{
+       max-width: 20%;
+       padding-top: 10px;
+       float: left;
+       padding-right: 10px;
+     }
+     .content{
+       max-width:80%;
+         float:start;
+       padding-left: 10px;
+         padding-bottom: 5px;
+     }
+
+ table td {
+      border: 1px solid lightblue;
+      border-collapse: collapse;
+      border-radius:5px;
+      }
+  td {
+      padding: 5px;
+      text-align: center;
+      color:blue;
+  }
+.layout{
+    margin-bottom: 5px;
+    background-color: whitesmoke;
+}

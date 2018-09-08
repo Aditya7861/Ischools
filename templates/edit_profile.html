@@ -1,0 +1,9 @@
+{% extends 'loggedin.html' %}
+{% block container %}
+  <form method="post" action="/update_user/">
+     {% csrf_token %}
+      {{ form1.as_p }}
+      {{ form2.as_p }}
+  <input type="submit" name="submit" value="submit">
+  </form>
+{% endblock %}

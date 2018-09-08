@@ -1,0 +1,11 @@
+table td {
+      border: 1px solid lightblue;
+      border-collapse: collapse;
+      border-radius:5px;
+      }
+  td {
+      padding: 5px;
+      text-align: center;
+      color:blue;
+      width: 50%;
+  }

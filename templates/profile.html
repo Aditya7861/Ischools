@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <style>
+      .jumbotron{
+          padding: 10px 0px;
+          margin-bottom:1px;
+      }
+      .jumbotron h5{
+          padding-left: 15px;
+          padding-top: 10px;
+      }
+      .jumbotron img{
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+          width: 100px;
+          height: 100px;
+      }
+  </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-sm bg-light navbar-light">
+            <ul class="nav  nav-white" id="log">
+              <li class="nav-item active px-0">
+                <a class="nav-link" href="{% url 'loggedin' %}"><i class="fa fa-home" style="color:lightslategrey;font-size:30px"></i></a>
+              </li>
+              <li class="nav-item px-0">
+                <a class="nav-link" href="#"><i class="fa fa-envelope-o" style="color:lightslategrey;font-size:30px"></i></a>
+              </li>
+              <li class="nav-item px-0">
+                <a class="nav-link" href="#"><i class="fa fa-user" style="color:lightslategrey;font-size:30px"></i></a>
+              </li>
+              <li class="nav-item px-0">
+                <a class="nav-link" href="{% url 'friends' %}"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
+              </li>
+              <li class="nav-item px-0">
+                <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="color:lightslategrey;font-size:30px"></i></a>
+              </li>
+            </ul>
+          </nav>
+    <div class="card">
+       <div class="jumbotron text-center card-header">
+        <img src="C:\Users\sivamohan\Desktop\myfiles\school.png" alt="not loaded">
+        <h3 class="text-success">Username</h3>
+        <a class="btn btn-info" href="#" role="button">Messages</a>
+        <a class="btn btn-info" href="{% url 'updateuser' %}" role="button">Edit profile</a>
+        <h5 class="text-info">Email :<span style="color: #00cc66;">  sivamohan@gmail.com</span></h5>
+       </div>
+       <div class="card-body">
+            <nav class="navbar navbar-expand-sm bg-light navbar-light">
+                    <ul class="navbar-nav">
+                      <li class="nav-item active">
+                        <h5><a class="nav-link text-info" href="#"><i class="fa fa-newspaper-o text-success"></i><span style="padding-left:10px;">Recent posts</span></a></h5>
+                      </li>
+                      <li class="nav-item">
+                        <h5><a class="nav-link text-info" href="#"><i class="fa fa-group text-success"></i><span style="padding-left:10px;">Friends</span></a></h5>
+                      </li>
+                      <li class="nav-item">
+                        <h5><a class="nav-link text-info" href="#"><i class="fa fa-info-circle text-success"></i><span style="padding-left:10px;">About me</span></a></h5>
+                      </li>
+                      <li class="nav-item">
+                        <h5><a class="nav-link text-info" href="#"><i class="fa fa-home text-success"></i><span style="padding-left:10px;">Go to Home</span></a></h5>
+                      </li>
+                    </ul>
+                  </nav>
+       </div>
+       <div class="card-footer text-center">
+           <button class="btn btn-primary">Logout</button>
+       </div>
+    </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/js/bootstrap.min.js"></script>
+</body>
+</html>
