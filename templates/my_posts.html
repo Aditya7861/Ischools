@@ -1,0 +1,20 @@
+{% extends 'loggedin.html' %}
+{% block container %}
+<div class="container" style="background-color: #f8f9fa">
+  <h4 style="color:blue;"><strong>my posts :</strong></h4><hr>
+  {% for post in posts %}
+    <div class="layout">
+    <div class="content">
+       <p> at <strong>{{ post.published_date }}</strong></p>
+       <p class="text-success">{{ post.text }}</p>
+        <table class="tabl" width="100%">
+           <tr>
+               <td><a href="{% url 'post_details' pk=post.pk %}"><i class="fa fa-comment" style="font-size:20px;color:blue"></i> Comments:({{post.comments_set.count}})</td>
+               <td><a href="{% url 'delete_post' pk=post.pk %}"><i class="fa fa-trash-o" style="font-size:20px;color:blue"></i> delete post</a></td>
+           </tr>
+       </table>
+      </div>
+    <hr>
+  </div>
+  {% endfor %}
+{% endblock %}

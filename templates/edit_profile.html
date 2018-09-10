@@ -1,9 +1,12 @@
 {% extends 'loggedin.html' %}
 {% block container %}
-  <form method="post" action="/update_user/">
-     {% csrf_token %}
-      {{ form1.as_p }}
-      {{ form2.as_p }}
-  <input type="submit" name="submit" value="submit">
-  </form>
+    {% load bootstrap %}
+    <div class="container">
+      <form class="loginform" method="post" action="{% url 'update_user' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form1|bootstrap }}
+          {{ form2|bootstrap }}
+          <button type="submit" class="btn btn-info">update</button>
+       </form>
+  </div>
 {% endblock %}

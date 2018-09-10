@@ -1,0 +1,21 @@
+{% extends 'loggedin.html' %}
+{% block container %}
+  <div class="container">
+   <h3 class="text-info">Followed by you : </h3><hr>
+  {% for follower in user.following_set.all %}
+     <div style="border: 1px solid lightblue;margin-top:5px;border-radius: 5px;padding: 5px; box-shadow: 0 1px 2px 0 lightblue, 0 2px 10px 0 lightblue;">
+     <center>
+     <img style="border-radius: 50%;" src="{{ follower.friend.user_details.image.url }}" alt="not uploaded" width="50px" height="50px">
+     <h3 class="text-primary">{{ follower.friend.username }}</h3>
+     </center>
+       <table class="tabl" width="100%">
+           <tr>
+               <td><a href="{% url 'profile' pk=follower.friend.pk %}">profile</a></td>
+               <td><a href="{% url 'unfollow' pk=follower.friend.pk %}">unfollow</a></td>
+           </tr>
+       </table>
+     </div>
+  {% endfor %}
+ </div>
+
+{% endblock %}

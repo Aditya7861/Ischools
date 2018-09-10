@@ -114,6 +114,8 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Kolkata'
 
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
 USE_I18N = True
 
 USE_L10N = True
@@ -122,7 +124,7 @@ USE_TZ = False
 
 MEDIA_URL = '/media/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'ISchools/media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'templates/media')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/

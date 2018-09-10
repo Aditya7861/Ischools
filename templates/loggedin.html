@@ -12,13 +12,13 @@
         <a class="nav-link" href="{% url 'loggedin' %}"><i class="fa fa-home" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
-        <a class="nav-link" href="#"><i class="fa fa-envelope-o" style="color:lightslategrey;font-size:30px"></i></a>
+        <a class="nav-link" href="{% url 'followers' pk=user.pk %}"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
-        <a class="nav-link" href="{% url 'profile' %}"><i class="fa fa-user" style="color:lightslategrey;font-size:30px"></i></a>
+        <a class="nav-link" href="{% url 'profile' pk=user.pk %}"><i class="fa fa-user" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
-        <a class="nav-link" href="{% url 'friends' %}"><i class="fa fa-group" style="color:lightslategrey;font-size:30px"></i></a>
+        <a class="nav-link" href="{% url 'friends' %}"><i class="fa fa-user-plus" style="color:lightslategrey;font-size:30px"></i></a>
       </li>
       <li class="nav-item px-0">
         <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-sign-out" style="color:lightslategrey;font-size:30px"></i></a>
@@ -40,22 +40,20 @@
   {% for post in posts %}
     <div class="layout">
     <div class="user">
-       <img style="border-radius: 50%;" src="{% static 'user-128.png' %}" width="50px" height="50px">
+       <img style="border-radius: 50%;" src="{{ post.username.user_details.image.url }}" alt="not uploaded" width="50px" height="50px">
     </div>
     <div class="content">
        <p>by <strong><span style="color: blue;">{{ post.username }}</span> </strong> at <strong>{{ post.published_date }}</strong></p>
-       <p>{{ post.text }}</p>
+       <p class="text-success">{{ post.text }}</p>
 
         <table class="tabl" width="100%">
            <tr>
-               {% for like in post.likes_set.all %}
-                    {% if like.post == post and like.user == request.user %}
-                        <td><a href="#">unlike:({{ post.likes_set.count }})</a></td>
-                    {% endif %}
-                {% empty %}
-                   <td><a href="{% url 'add_like' pk=post.pk %}">Like :({{ post.likes_set.count}})</a></td>
-               {% endfor %}
-               <td><a href="{% url 'post_details' pk=post.pk %}">Comments:({{post.comments_set.count}})</td>
+               {% if post.id in likes %}
+                  <td><a href="{% url 'delete_like' pk=post.pk %}"><i class="fa fa-thumbs-down" style="font-size:20px;color:blue"></i> unlike :({{ post.likes_set.count}})</a></td>
+               {% else %}
+                   <td><a href="{% url 'add_like' pk=post.pk %}"><i class="fa fa-thumbs-up" style="font-size:20px;color:blue"></i> Like :({{ post.likes_set.count}})</a></td>
+               {% endif %}
+               <td><a href="{% url 'post_details' pk=post.pk %}"><i class="fa fa-comment" style="font-size:20px;color:blue"></i> Comments:({{post.comments_set.count}})</td>
            </tr>
        </table>
       </div>
@@ -64,27 +62,23 @@
   {% endfor %}
      {% with posts as items %}
             {% if items.has_other_pages %}
+
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-left">
+                    <ul class="pagination justify-content-center">
                         {% if items.has_previous %}
-                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ items.previous_page_number }}">&laquo; prev</a></li>
                         {% else %}
-                            <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo;</span></a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#"><span>&laquo; prev</span></a></li>
                         {% endif %}
-                        {% for i in items.paginator.page_range %}
-                            {% if items.number == i %}
-                                <li class="page-item active"><a class="page-link" href="#">{{ i }} <span class="sr-only">(current)</span></a></li>
-                            {% else %}
-                                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %}
-                        {% endfor %}
+
                         {% if items.has_next %}
-                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">&raquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="?page={{ items.next_page_number }}">next &raquo;</a></li>
                         {% else %}
-                            <li class="page-item disabled"><a class="page-link" href="#"><span>&raquo;</span></a></li>
+                            <li class="page-item disabled"><a class="page-link" href="#"><span>next &raquo;</span></a></li>
                         {% endif %}
                     </ul>
                 </nav>
+
             {% endif %}
         {% endwith %}
     </div>
