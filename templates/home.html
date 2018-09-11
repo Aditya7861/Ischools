@@ -15,49 +15,55 @@
 <title>Title</title>
 </head>
 {% endblock %}
-<body>
+<body bgcolor="#e9ecef5e">
   {% block header %}
    <div class="jumbotron text-center text-success">
-    <img src="{% static 'school.png' %}" alt="not loaded">
-    <h1 class="display-4">ISchools.com</h1>
-    <p class="lead">Online School Management</p>
-  </div>
+    <h1 class="display-4" style="font-family: 'Ink Free';font-weight: bold">Follow Me<sub style="font-weight: normal;font-size: small">to be a nerd</sub></h1>
+    <h5 style="padding-bottom: 4px;color:mediumseagreen;">share your knowledge here</h5>
+   </div>
   {% endblock %}
   {% block navbar %}
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#">ISchools.com</a>
+    <a class="navbar-brand text-success" href="{% url 'home' %}" style="font-family: 'Ink Free';font-weight: bold">Follow Me</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span></button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}"><i class="fa fa-home"></i>  Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">	<i class="fa fa-user-o"></i>  About</a>
-        </li>
-      </ul>
       <ul class="navbar-nav navbar-right">
           {% block logout %}
-        <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}"><i class="fa fa-user"></i>  sign-up</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in"></i>  login</a></li>
+        <li class="nav-item"><a class="nav-link text-info" style="font-weight: bold" href="{% url 'signup' %}"><i class="fa fa-user"></i>  sign-up</a></li>
           {% endblock %}
       </ul>
     </div>
   </nav>
   {% endblock navbar %}
+
   {% block container %}
+      <div class="container-fluid" style="background-color: #e9ecef5e;padding-bottom: 15px">
+        <img src="{% static 'background.gif' %}" style="float: left;" width="350" height="270">
+      <form class="loginform" method="post" action="/login/">
+          {% csrf_token %}
+          <div class="form-group">
+              <label for="username">Username:</label>
+              {{ form.username }}
+           </div>
+          <div class="form-group">
+              <label for="pwd">Password:</label>
+              {{ form.password }}
+          </div>
+          <div class="form-group form-check">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox" name="remember"> Remember me
+              </label>
+          </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+            <button type="button" class="btn btn-info">forgot password</button>
+       </form>
+  </div>
   {% endblock container %}
   {% block footer %}
-  <div class="container" id="footer">
-    <hr>
-    <p class="text-info">ISchools is optimised online interactive site for both students and tutors.This provides the latest posts to the students on the topic they selected.</p>
-    <p>Follow us :</p>
-    <ul id="footer-icon-list">
-        <li style="margin-right:10px;"><a href="#"><i class="fa fa-facebook-official"></i><span> Facebook</span></a></li>
-        <li style="margin-right:10px;"><a href="#"><i class="fa fa-linkedin-square"></i><span> Linkedin</span> </a></li>
-        <li style="margin-right:10px;"><a href="#"><i class="fa fa-twitter"></i><span> Twitter</span> </a></li>
-    </ul>
+  <div class="container-fliud text-success" style="text-align: center;background-color: #e9ecef5e;margin-top: 0px">
+    <hr style="margin-top: 0px">
+    <h5 class="text-info">Follow me - is a host where you can share your knowledge to others who follows.</h5><br>
   </div>
   {% endblock %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>

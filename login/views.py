@@ -10,7 +10,8 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 def home(request):
-    return render(request, 'home.html')
+    form = Login()
+    return render(request, 'home.html',{'form':form})
 
 
 def user_login(request):
@@ -152,7 +153,7 @@ def loggedin(request):
     for like in likes:
         li.append(like.post_id)
     user = User.objects.get(pk=request.user.id)
-    post = Post.objects.filter(username__following__friend_id=user.id).order_by('-published_date')
+    post = Post.objects.filter(username__follower__user=request.user).order_by('-published_date')
     page = request.GET.get('page', 1)
     paginator = Paginator(post, 4)
     try:
