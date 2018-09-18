@@ -43,7 +43,7 @@
        <img style="border-radius: 50%;" src="{{ post.username.user_details.image.url }}" alt="not uploaded" width="50px" height="50px">
     </div>
     <div class="content">
-       <p>by <strong><span style="color: blue;">{{ post.username }}</span> </strong> at <strong>{{ post.published_date }}</strong></p>
+       <p>by <strong><span style="color: blue;"><a href="{% url 'profile' pk=post.username.pk %}">{{ post.username }}</a></span> </strong> at <strong>{{ post.published_date }}</strong></p>
        <p class="text-success">{{ post.text }}</p>
 
         <table class="tabl" width="100%">
